@@ -7,12 +7,7 @@ class ScrapingService:
     def generate_html_page(league_title: str, table_html: str, round_title: str, rounds_html: str) -> str:
         """Gera a página HTML completa"""
         full_page = f"""
-        <html>
-        <head>
-        <meta charset='utf-8'>
-        {STYLES['table']}
-        </head>
-        <body>
+        <div>
         <h1>{league_title}</h1>
         {table_html}
         <div>
@@ -22,9 +17,23 @@ class ScrapingService:
         for round_ in rounds_html:
             full_page += round_
 
-        full_page += "</div></body></html>"
+        full_page += "</div></div>"
 
         return full_page
+    
+    @classmethod
+    def generate_rounds(cls, roundstitle, rounds) -> str:
+        page = f"""
+    <div>
+    <h2>{roundstitle}</h2>
+    """
+        
+        for round_ in rounds:
+            page += round_
+
+        page += "</div>"
+
+        return page
 
     @classmethod
     def scrape_and_save(cls, url: str, league_title: str):
@@ -46,9 +55,5 @@ class ScrapingService:
         # 5. Gerar página final
         full_page = cls.generate_html_page(league_title, table_html, round_title, rounds_html)
         
-        # 6. Salvar resultado
-        with open(f'{league_title}.html', 'w', encoding='utf-8') as file:
-            file.write(full_page)
-        
         print("Processo de scraping concluído! Verifique o arquivo index.html")
-        return full_page
+        return table_html, cls.generate_rounds(round_title, rounds_html)

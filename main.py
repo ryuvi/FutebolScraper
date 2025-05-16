@@ -22,21 +22,34 @@ def get_league_title(url: str):
 def main(league: str):
     url = BASE_URL[league]
 
+    print("Agora, Liga: " + league)
+
     # 1. Executar scraping
     print("Iniciando processo de scraping...")
 
     # 1. Executar scraping
     title = get_league_title(url)
-    html_content = ScrapingService.scrape_and_save(url, title)
+    table_content, rounds_content = ScrapingService.scrape_and_save(url, title)
 
     # 2. Publicar conteúdo
     print("\nIniciando processo de publicação...")
-    PublishingService.publish_content(
-        event_name=league,
-        content=html_content,
-        headless=(not get_debug()),  # Altere para True em produção
-        debug=(get_debug())       # Altere para False em produção
-    )
+    import sqlite3
+
+    conn = sqlite3.connect('../cms/database.sqlite')
+    cur = conn.cursor()
+
+    cur.execute(f"UPDATE leagues SET tabela_html=?, rodada_html=? WHERE nome=?;", (table_content, rounds_content, league))
+
+    conn.commit()
+    conn.close()
+
+    # PublishingService.publish_content(
+    #     event_name=league,
+    #     content=table_content,
+    #     rounds=rounds_content,
+    #     headless=False, #(not get_debug()),  # Altere para True em produção
+    #     debug=False #(get_debug())       # Altere para False em produção
+    # )
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(

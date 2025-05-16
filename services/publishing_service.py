@@ -4,7 +4,7 @@ from components.publisher import ContentPublisher
 
 class PublishingService:
     @staticmethod
-    def publish_content(event_name: str, content: str, headless=False, debug=False):
+    def publish_content(event_name: str, content: str, rounds: str, headless=False, debug=False):
         """
         Publica conteúdo no site
         
@@ -26,7 +26,7 @@ class PublishingService:
             # 3. Publicar conteúdo
             publisher = ContentPublisher(driver)
             if publisher.find_and_edit_event(event_name):
-                publisher.update_content(content)
+                publisher.update_content(content, rounds)
                 
                 # Descomente para salvar automaticamente
                 if debug:

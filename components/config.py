@@ -1,14 +1,14 @@
 # config.py
 BASE_URL = {
-    'Brasileirão A': 'https://www.futebolinterior.com.br/campeonato/brasileirao-serie-a-2025/',
-    'Brasileirão B': 'https://www.futebolinterior.com.br/campeonato/brasileirao-serie-b-2025/',
-    'BRASILEIRAO C': 'https://www.futebolinterior.com.br/campeonato/brasileirao-serie-c-2025/',
-    'BRASILEIRAO D': 'https://www.futebolinterior.com.br/campeonato/brasileirao-serie-d-2025/',
+    'Brasileirão Série A': 'https://www.futebolinterior.com.br/campeonato/brasileirao-serie-a-2025/',
+    'Brasileirão Série B': 'https://www.futebolinterior.com.br/campeonato/brasileirao-serie-b-2025/',
+    'Brasileirão Série C': 'https://www.futebolinterior.com.br/campeonato/brasileirao-serie-c-2025/',
+    'Brasileirão Série D': 'https://www.futebolinterior.com.br/campeonato/brasileirao-serie-d-2025/',
     'Paulista A1-2025': 'https://www.futebolinterior.com.br/campeonato/paulistao-a1-2025/',
     'Paulista A2-2025': 'https://www.futebolinterior.com.br/campeonato/paulistao-a2-2025/',
     'Paulista A4-2025': 'https://www.futebolinterior.com.br/campeonato/paulistao-a4-2025/',
     'Libertadores': 'https://www.futebolinterior.com.br/campeonato/libertadores-unica-2025/',
-    'COPA DO BRASIL': 'https://www.futebolinterior.com.br/campeonato/copa-do-brasil-unica-2025/',
+    'Copa do Brasil': 'https://www.futebolinterior.com.br/campeonato/copa-do-brasil-unica-2025/',
     'Sul-Americana': 'https://www.futebolinterior.com.br/campeonato/copa-sul-americana-unica-2025/'
 }
 
@@ -290,13 +290,9 @@ STYLES = {
 }
 
 ELEMENT_SELECTORS = {
-		'email': './/input[@id="email"]',
-		'password': './/input[@id="senha"]',
-		'login_button': './/input[@id="button"]',
-		'eventos_link': './/a[@href="eventos.php"]',
-		'tabela_relacao': './/table[@class="tabela-relacao"]',
-		'evento_row': './/tbody/tr',
-		'evento_name': './/td[2]',
-		'edit_button': './/td[1]/a[2]',
-		'textarea': './/div[contains(@class," nicEdit-main")]'
+		'email': '//input[@id="email"]',
+		'password': '//input[@id="password"]',
+		'login_button': '//button[@id="entrar"]',
+		'eventos_link': './/a[@id="minhas-ligas"]',
+		'textarea': './/textarea[@id="league_content"]'
 }
